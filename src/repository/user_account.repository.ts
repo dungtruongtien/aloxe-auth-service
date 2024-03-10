@@ -1,6 +1,6 @@
 import { type IUserAccountRepo } from './interface'
 import prisma from '../client/prisma'
-import { type UserAccount } from '@prisma/client'
+import { type Prisma, type UserAccount } from '@prisma/client'
 
 export class UserAccountRepository implements IUserAccountRepo {
   async getUserAccounts (): Promise<UserAccount[]> {
@@ -15,7 +15,9 @@ export class UserAccountRepository implements IUserAccountRepo {
     })
   }
 
-  createUser: any
-  updateUser: any
-  deleteUser: any
+  async createUserAccount (dto: Prisma.UserAccountCreateInput): Promise<UserAccount> {
+    return await prisma.userAccount.create({
+      data: dto
+    })
+  }
 }

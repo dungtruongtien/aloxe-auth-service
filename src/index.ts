@@ -9,6 +9,7 @@ import schema from './graphql/schema/schema'
 import initCtx from './graphql/context'
 import { type GraphQLFormattedError } from 'graphql'
 import { restAuthenticate, graphqlAuthenticate } from './middlewares/auth.middleware'
+import apiRouteHandler from './routes/api.route'
 
 interface MyContext {
   token?: string
@@ -39,6 +40,8 @@ async function start () {
   app.use(express.urlencoded({ extended: true }))
   app.use(graphqlAuthenticate)
   app.use(restAuthenticate)
+
+  app.use('/api', apiRouteHandler)
 
   app.use(
     '/graphql',

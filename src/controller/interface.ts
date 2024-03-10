@@ -1,5 +1,11 @@
-export interface IUserAccountController {
+import { type ICreateUserAccountInput } from '../services/dto/user.dto'
+
+export interface IUserAccountGraphController {
   login: (username: string, password: string) => Promise<IResponse>
+}
+
+export interface IUserAccountRestController {
+  createUserAccount: (input: ICreateUserAccountInput) => Promise<IResponse>
 }
 
 export interface IResponse {

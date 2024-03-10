@@ -1,4 +1,4 @@
-import UserAccountController from '../../../controller/account.controller'
+import UserAccountGraphController from '../../../controller/account.controller.graph'
 import { type IContext } from '../../context'
 
 interface ILoginInput {
@@ -6,7 +6,7 @@ interface ILoginInput {
   password: string
 }
 
-const userAccountController = new UserAccountController()
+const userAccountController = new UserAccountGraphController()
 
 export default {
   Query: {

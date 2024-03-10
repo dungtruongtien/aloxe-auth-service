@@ -4,6 +4,8 @@ import { GraphQLError } from 'graphql'
 import { type ILoginResponse, type IUserAccountService } from './interface'
 import { type IUserRepo, type IUserAccountRepo } from '../repository/interface'
 import { AUTH_ACCESS_SERCRET_KEY } from '../common/constant'
+import { type Prisma, type UserAccount } from '@prisma/client'
+import { type ICreateUserAccountInput } from './dto/user.dto'
 
 export class UserAccountService implements IUserAccountService {
   private readonly userAccountRepo: IUserAccountRepo
@@ -61,5 +63,16 @@ export class UserAccountService implements IUserAccountService {
       // staffId: staff ? staff.id : null,
       // email: existsUser.email
     }
+  }
+
+  async createUserAccount (input: ICreateUserAccountInput): Promise<UserAccount> {
+    const salt = bcrypt.genSaltSync(10)
+    const hashedPassword = bcrypt.hashSync(input.password, salt)
+    const createUserAccountDto: Prisma.UserAccountCreateInput = {
+      username: input.username,
+      password: hashedPassword,
+      userId: input.userId
+    }
+    return await this.userAccountRepo.createUserAccount(createUserAccountDto)
   }
 }
