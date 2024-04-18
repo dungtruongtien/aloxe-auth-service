@@ -47,7 +47,7 @@ function initCtx(_a) {
         return __generator(this, function (_b) {
             context = {
                 prisma: prisma_1.default,
-                account: res.locals.account
+                account: res.locals.user
             };
             return [2, context];
         });

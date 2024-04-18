@@ -1,5 +1,5 @@
 import { type UserAccount } from '@prisma/client'
-import { type ICreateUserAccountInput } from './dto/user.dto'
+import { type ICreateUserAccountInput } from './user_account.dto'
 
 export interface IService {
   userAccount: IUserAccountService

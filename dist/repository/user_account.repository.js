@@ -68,6 +68,18 @@ var UserAccountRepository = (function () {
             });
         });
     };
+    UserAccountRepository.prototype.createUserAccount = function (dto) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, prisma_1.default.userAccount.create({
+                            data: dto
+                        })];
+                    case 1: return [2, _a.sent()];
+                }
+            });
+        });
+    };
     return UserAccountRepository;
 }());
 exports.UserAccountRepository = UserAccountRepository;

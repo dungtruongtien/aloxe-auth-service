@@ -39,8 +39,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var account_controller_1 = __importDefault(require("../../../controller/account.controller"));
-var userAccountController = new account_controller_1.default();
+var account_controller_graph_1 = __importDefault(require("../../../controller/account.controller.graph"));
+var userAccountController = new account_controller_graph_1.default();
 exports.default = {
     Query: {
         account: function (parent, args, context, info) {

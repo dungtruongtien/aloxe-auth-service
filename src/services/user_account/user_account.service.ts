@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import { GraphQLError } from 'graphql'
-import { type ILoginResponse, type IUserAccountService } from './interface'
-import { type IUserRepo, type IUserAccountRepo } from '../repository/interface'
-import { AUTH_ACCESS_SERCRET_KEY } from '../common/constant'
+import { type ILoginResponse, type IUserAccountService } from './user_account.interface'
+import { type IUserRepo, type IUserAccountRepo } from '../../repository/interface'
+import { AUTH_ACCESS_SERCRET_KEY } from '../../common/constant'
 import { type Prisma, type UserAccount } from '@prisma/client'
-import { type ICreateUserAccountInput } from './dto/user.dto'
+import { type ICreateUserAccountInput } from './user_account.dto'
 
 export class UserAccountService implements IUserAccountService {
   private readonly userAccountRepo: IUserAccountRepo
@@ -53,9 +53,6 @@ export class UserAccountService implements IUserAccountService {
       phoneNumber: userData.fullName,
       fullName: userData.fullName
       // userId: existsUser.id,
-      // accessTokenExpiryIn,
-      // refreshToken,
-      // refreshTokenExpiryIn,
       // role: existsUser.role,
       // fullName: existsUser.fullName,
       // customerId: userData.id,

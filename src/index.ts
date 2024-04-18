@@ -53,8 +53,8 @@ async function start () {
     })
   )
 
-  httpServer.listen({ port: 4002 }, function () {
-    console.log('🚀 Server ready at http://localhost:4002/')
+  httpServer.listen({ port: 4004 }, function () {
+    console.log('🚀 Server ready at http://localhost:4004/')
   })
 }
 

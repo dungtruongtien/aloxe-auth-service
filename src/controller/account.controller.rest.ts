@@ -1,9 +1,11 @@
+import { type NextFunction, type Request, type Response } from 'express'
 import { UserRepository } from '../repository/user.repository'
 import { UserAccountRepository } from '../repository/user_account.repository'
-import { type ICreateUserAccountInput } from '../services/dto/user.dto'
-import { type IUserAccountService } from '../services/interface'
-import { UserAccountService } from '../services/user_account.service'
-import { type IResponse, type IUserAccountRestController } from './interface'
+import { type ICreateUserAccountInput } from '../services/user_account/user_account.dto'
+import { type IUserAccountService } from '../services/user_account/user_account.interface'
+import { UserAccountService } from '../services/user_account/user_account.service'
+import { type IUserAccountRestController } from './interface'
+import { HttpStatusCode } from 'axios'
 
 export default class UserAccountRestController implements IUserAccountRestController {
   private readonly userAccountService: IUserAccountService
@@ -13,12 +15,21 @@ export default class UserAccountRestController implements IUserAccountRestContro
     this.userAccountService = new UserAccountService(this.userAccountRepository, this.userRepository)
   }
 
-  async createUserAccount (input: ICreateUserAccountInput): Promise<IResponse> {
-    const data = await this.userAccountService.createUserAccount(input)
-    return {
-      message: 'success',
-      code: '',
+  async createUserAccount (req: Request, res: Response, next: NextFunction): Promise<any> {
+    const data = await this.userAccountService.createUserAccount(req.body as ICreateUserAccountInput)
+    res.status(HttpStatusCode.Ok).json({
+      status: 'SUCCESS',
       data
-    }
+    })
+  }
+
+  async login (req: Request, res: Response, next: NextFunction): Promise<any> {
+    const username = req.body.username
+    const password = req.body.password
+    const data = await this.userAccountService.login(username as string, password as string)
+    res.status(HttpStatusCode.Ok).json({
+      status: 'SUCCESS',
+      data
+    })
   }
 }

@@ -35,57 +35,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
-var http_1 = __importDefault(require("http"));
-var server_1 = require("@apollo/server");
-var express4_1 = require("@apollo/server/express4");
-var subgraph_1 = require("@apollo/subgraph");
-var drainHttpServer_1 = require("@apollo/server/plugin/drainHttpServer");
-var cors_1 = __importDefault(require("cors"));
-var schema_1 = __importDefault(require("./graphql/schema/schema"));
-var context_1 = __importDefault(require("./graphql/context"));
-var auth_middleware_1 = require("./middlewares/auth.middleware");
-var api_route_1 = __importDefault(require("./routes/api.route"));
-function start() {
-    return __awaiter(this, void 0, void 0, function () {
-        var app, httpServer, server;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    app = (0, express_1.default)();
-                    httpServer = http_1.default.createServer(app);
-                    server = new server_1.ApolloServer({
-                        schema: (0, subgraph_1.buildSubgraphSchema)(schema_1.default),
-                        plugins: [
-                            (0, drainHttpServer_1.ApolloServerPluginDrainHttpServer)({ httpServer: httpServer })
-                        ],
-                        formatError: function (formattedError, error) {
-                            console.log('formattedError----', formattedError);
-                            return formattedError;
-                        }
-                    });
-                    return [4, server.start()];
-                case 1:
-                    _a.sent();
-                    app.use(express_1.default.json());
-                    app.use(express_1.default.urlencoded({ extended: true }));
-                    app.use(auth_middleware_1.graphqlAuthenticate);
-                    app.use(auth_middleware_1.restAuthenticate);
-                    app.use('/api', api_route_1.default);
-                    app.use('/graphql', (0, cors_1.default)(), (0, express4_1.expressMiddleware)(server, {
-                        context: context_1.default
-                    }));
-                    httpServer.listen({ port: 4004 }, function () {
-                        console.log('🚀 Server ready at http://localhost:4004/');
-                    });
-                    return [2];
-            }
+var user_repository_1 = require("../repository/user.repository");
+var user_account_repository_1 = require("../repository/user_account.repository");
+var user_account_service_1 = require("../services/user_account.service");
+var axios_1 = require("axios");
+var UserAccountRestController = (function () {
+    function UserAccountRestController() {
+        this.userAccountRepository = new user_account_repository_1.UserAccountRepository();
+        this.userRepository = new user_repository_1.UserRepository();
+        this.userAccountService = new user_account_service_1.UserAccountService(this.userAccountRepository, this.userRepository);
+    }
+    UserAccountRestController.prototype.createUserAccount = function (req, res, next) {
+        return __awaiter(this, void 0, void 0, function () {
+            var data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.userAccountService.createUserAccount(req.body)];
+                    case 1:
+                        data = _a.sent();
+                        res.status(axios_1.HttpStatusCode.Ok).json({
+                            status: 'SUCCESS',
+                            data: data
+                        });
+                        return [2];
+                }
+            });
         });
-    });
-}
-start().catch(function () { });
-//# sourceMappingURL=index.js.map
+    };
+    return UserAccountRestController;
+}());
+exports.default = UserAccountRestController;
+//# sourceMappingURL=account.controller.rest.js.map

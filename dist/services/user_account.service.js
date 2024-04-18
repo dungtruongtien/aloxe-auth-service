@@ -92,6 +92,25 @@ var UserAccountService = (function () {
             });
         });
     };
+    UserAccountService.prototype.createUserAccount = function (input) {
+        return __awaiter(this, void 0, void 0, function () {
+            var salt, hashedPassword, createUserAccountDto;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        salt = bcryptjs_1.default.genSaltSync(10);
+                        hashedPassword = bcryptjs_1.default.hashSync(input.password, salt);
+                        createUserAccountDto = {
+                            username: input.username,
+                            password: hashedPassword,
+                            userId: input.userId
+                        };
+                        return [4, this.userAccountRepo.createUserAccount(createUserAccountDto)];
+                    case 1: return [2, _a.sent()];
+                }
+            });
+        });
+    };
     return UserAccountService;
 }());
 exports.UserAccountService = UserAccountService;

@@ -1,11 +1,12 @@
-import { type ICreateUserAccountInput } from '../services/dto/user.dto'
+import { type NextFunction, type Request, type Response } from 'express'
 
 export interface IUserAccountGraphController {
   login: (username: string, password: string) => Promise<IResponse>
 }
 
 export interface IUserAccountRestController {
-  createUserAccount: (input: ICreateUserAccountInput) => Promise<IResponse>
+  createUserAccount: (req: Request, res: Response, next: NextFunction) => Promise<any>
+  login: (req: Request, res: Response, next: NextFunction) => Promise<any>
 }
 
 export interface IResponse {
