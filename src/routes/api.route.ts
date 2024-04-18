@@ -1,9 +1,10 @@
-import express from 'express'
+import express, { type Router } from 'express'
+import { createAuthRoute } from './user_account.route'
 
-import userAccountRouterHandler from './user_account.route'
+export const createRootRoute = (): Router => {
+  const router = express.Router()
 
-const router = express.Router()
+  router.use('/user_accounts', createAuthRoute())
 
-router.use('/user_accounts', userAccountRouterHandler)
-
-export default router
+  return router
+}
