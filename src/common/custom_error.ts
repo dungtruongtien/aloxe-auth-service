@@ -1,6 +1,6 @@
 import { GraphQLError, type GraphQLErrorOptions } from 'graphql'
 
-export class CustomError extends GraphQLError {
+export class CustomError extends Error {
   public status: number = 0
   constructor (message: string) {
     super(message)

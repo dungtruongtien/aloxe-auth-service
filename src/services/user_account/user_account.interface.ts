@@ -14,4 +14,10 @@ export interface ILoginResponse {
   accessToken: string
   fullName?: string
   phoneNumber?: string
+  userId?: number
+  role?: string
+  customerId?: number
+  driverId?: number
+  staffId?: number
+  email?: string
 }

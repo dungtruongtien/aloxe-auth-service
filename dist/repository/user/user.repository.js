@@ -35,63 +35,39 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var user_repository_1 = require("../repository/user/user.repository");
-var user_account_repository_1 = require("../repository/user_account/user_account.repository");
-var user_account_service_1 = require("../services/user_account/user_account.service");
-var axios_1 = require("axios");
-var UserAccountRestController = (function () {
-    function UserAccountRestController() {
-        this.userAccountRepository = new user_account_repository_1.UserAccountRepository();
-        this.userRepository = new user_repository_1.UserRepository();
-        this.userAccountService = new user_account_service_1.UserAccountService(this.userAccountRepository, this.userRepository);
+exports.UserRepository = void 0;
+var axios_1 = __importDefault(require("axios"));
+var constant_1 = require("../../common/constant");
+var UserRepository = (function () {
+    function UserRepository() {
     }
-    UserAccountRestController.prototype.createUserAccount = function (req, res, next) {
+    UserRepository.prototype.getUser = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var data;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, this.userAccountService.createUserAccount(req.body)];
-                    case 1:
-                        data = _a.sent();
-                        res.status(axios_1.HttpStatusCode.Ok).json({
-                            status: 'SUCCESS',
-                            data: data
-                        });
-                        return [2];
-                }
-            });
-        });
-    };
-    UserAccountRestController.prototype.login = function (req, res, next) {
-        return __awaiter(this, void 0, void 0, function () {
-            var username, password, data, error_1;
+            var config, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        username = req.body.username;
-                        password = req.body.password;
-                        _a.label = 1;
+                        config = {
+                            method: 'get',
+                            maxBodyLength: Infinity,
+                            url: "".concat(process.env.USER_SVC_DOMAIN, "/api/users/").concat(id),
+                            headers: {
+                                authorization: constant_1.INTERNAL_TOKEN
+                            }
+                        };
+                        return [4, axios_1.default.request(config)];
                     case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4, this.userAccountService.login(username, password)];
-                    case 2:
-                        data = _a.sent();
-                        res.status(axios_1.HttpStatusCode.Ok).json({
-                            status: 'SUCCESS',
-                            data: data
-                        });
-                        return [3, 4];
-                    case 3:
-                        error_1 = _a.sent();
-                        next(error_1);
-                        return [3, 4];
-                    case 4: return [2];
+                        response = _a.sent();
+                        return [2, response.data.data];
                 }
             });
         });
     };
-    return UserAccountRestController;
+    return UserRepository;
 }());
-exports.default = UserAccountRestController;
-//# sourceMappingURL=account.controller.rest.js.map
+exports.UserRepository = UserRepository;
+//# sourceMappingURL=user.repository.js.map

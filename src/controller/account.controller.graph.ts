@@ -1,5 +1,5 @@
-import { UserRepository } from '../repository/user.repository'
-import { UserAccountRepository } from '../repository/user_account.repository'
+import { UserRepository } from '../repository/user/user.repository'
+import { UserAccountRepository } from '../repository/user_account/user_account.repository'
 import { type IUserAccountService } from '../services/user_account/user_account.interface'
 import { UserAccountService } from '../services/user_account/user_account.service'
 import { type IResponse, type IUserAccountGraphController } from './interface'

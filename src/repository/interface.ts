@@ -1,17 +1,7 @@
-import { type Prisma, type UserAccount } from '@prisma/client'
-import { type User } from './schema/user'
+import { type IUserRepo } from './user/user.interface'
+import { type IUserAccountRepo } from './user_account/user_account.interface'
 
 export interface IRepository {
   userAccount: IUserAccountRepo
   user: IUserRepo
-}
-
-export interface IUserAccountRepo {
-  getUserAccounts: () => Promise<UserAccount[]>
-  getUserAccount: (username: string) => Promise<UserAccount | null>
-  createUserAccount: (dto: Prisma.UserAccountCreateInput) => Promise<UserAccount>
-}
-
-export interface IUserRepo {
-  getUser: (id: number) => Promise<User | null>
 }

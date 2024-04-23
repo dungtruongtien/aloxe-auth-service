@@ -1,6 +1,6 @@
-import { type IUserAccountRepo } from './interface'
-import prisma from '../client/prisma'
+import prisma from '../../client/prisma'
 import { type Prisma, type UserAccount } from '@prisma/client'
+import { type IUserAccountRepo } from './user_account.interface'
 
 export class UserAccountRepository implements IUserAccountRepo {
   async getUserAccounts (): Promise<UserAccount[]> {

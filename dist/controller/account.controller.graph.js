@@ -36,9 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var user_repository_1 = require("../repository/user.repository");
-var user_account_repository_1 = require("../repository/user_account.repository");
-var user_account_service_1 = require("../services/user_account.service");
+var user_repository_1 = require("../repository/user/user.repository");
+var user_account_repository_1 = require("../repository/user_account/user_account.repository");
+var user_account_service_1 = require("../services/user_account/user_account.service");
 var UserAccountGraphController = (function () {
     function UserAccountGraphController() {
         this.userAccountRepository = new user_account_repository_1.UserAccountRepository();

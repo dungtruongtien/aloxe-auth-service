@@ -26,7 +26,7 @@ var CustomError = (function (_super) {
         return _this;
     }
     return CustomError;
-}(graphql_1.GraphQLError));
+}(Error));
 exports.CustomError = CustomError;
 var ValidationError = (function (_super) {
     __extends(ValidationError, _super);
