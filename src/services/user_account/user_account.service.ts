@@ -38,7 +38,7 @@ export class UserAccountService implements IUserAccountService {
     }
 
     const accessTokenPayload = {
-      account: existsUserAccount.id,
+      accountId: existsUserAccount.id,
       user: {
         id: userData.id
       },

@@ -76,7 +76,7 @@ var UserAccountService = (function () {
                             throw new Error('Invalid login credential');
                         }
                         accessTokenPayload = {
-                            account: existsUserAccount.id,
+                            accountId: existsUserAccount.id,
                             user: {
                                 id: userData.id
                             },

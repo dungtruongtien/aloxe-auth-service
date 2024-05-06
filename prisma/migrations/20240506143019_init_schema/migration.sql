@@ -3,7 +3,7 @@ CREATE TABLE `user_accounts` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(255) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
-    `user_id` INTEGER NOT NULL,
+    `userId` INTEGER NOT NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
