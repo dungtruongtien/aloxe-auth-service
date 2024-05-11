@@ -19,5 +19,4 @@ export interface ILoginResponse {
   customerId?: number
   driverId?: number
   staffId?: number
-  email?: string
 }

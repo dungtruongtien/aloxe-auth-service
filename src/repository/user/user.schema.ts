@@ -2,7 +2,6 @@ export interface User {
   id: number
   fullName: string
   phoneNumber: string
-  email: string
   address: string
   dob: Date
   role: number

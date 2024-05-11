@@ -7,10 +7,10 @@ export class UserAccountRepository implements IUserAccountRepo {
     return await prisma.userAccount.findMany()
   }
 
-  async getUserAccount (username: string): Promise<UserAccount | null> {
+  async getUserAccount (phoneNumber: string): Promise<UserAccount | null> {
     return await prisma.userAccount.findUnique({
       where: {
-        username
+        username: phoneNumber
       }
     })
   }

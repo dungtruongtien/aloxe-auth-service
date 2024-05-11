@@ -21,8 +21,8 @@ export class UserAccountService implements IUserAccountService {
     this.userRepo = userRepo
   }
 
-  async login (username: string, password: string): Promise<ILoginResponse | null> {
-    const existsUserAccount = await this.userAccountRepo.getUserAccount(username)
+  async login (phoneNumber: string, password: string): Promise<ILoginResponse | null> {
+    const existsUserAccount = await this.userAccountRepo.getUserAccount(phoneNumber)
     if (!existsUserAccount) {
       throw new NotfoundError('Invalid login credential', 'AuthenticationError')
     }
@@ -56,8 +56,7 @@ export class UserAccountService implements IUserAccountService {
       role: ROLE_MAPPING_STR[userData.role],
       customerId: userData.customer ? userData.customer.id : 0,
       driverId: userData.driver ? userData.driver.id : 0,
-      staffId: userData.staff ? userData.staff.id : 0,
-      email: userData.email
+      staffId: userData.staff ? userData.staff.id : 0
     }
   }
 
