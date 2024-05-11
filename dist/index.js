@@ -82,6 +82,7 @@ function start() {
                             err.name = 'INTERNAL_ERROR';
                             err.message = 'Internal error';
                         }
+                        console.log('err------', err);
                         res.status(err.status).json({
                             name: err.name,
                             message: err.message,

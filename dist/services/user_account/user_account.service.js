@@ -54,12 +54,12 @@ var UserAccountService = (function () {
         this.userAccountRepo = userAccountRepo;
         this.userRepo = userRepo;
     }
-    UserAccountService.prototype.login = function (username, password) {
+    UserAccountService.prototype.login = function (phoneNumber, password) {
         return __awaiter(this, void 0, void 0, function () {
             var existsUserAccount, isEqual, userData, accessTokenPayload, accessToken;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, this.userAccountRepo.getUserAccount(username)];
+                    case 0: return [4, this.userAccountRepo.getUserAccount(phoneNumber)];
                     case 1:
                         existsUserAccount = _a.sent();
                         if (!existsUserAccount) {
@@ -93,8 +93,7 @@ var UserAccountService = (function () {
                                 role: ROLE_MAPPING_STR[userData.role],
                                 customerId: userData.customer ? userData.customer.id : 0,
                                 driverId: userData.driver ? userData.driver.id : 0,
-                                staffId: userData.staff ? userData.staff.id : 0,
-                                email: userData.email
+                                staffId: userData.staff ? userData.staff.id : 0
                             }];
                 }
             });

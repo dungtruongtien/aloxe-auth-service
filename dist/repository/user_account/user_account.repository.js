@@ -54,13 +54,13 @@ var UserAccountRepository = (function () {
             });
         });
     };
-    UserAccountRepository.prototype.getUserAccount = function (username) {
+    UserAccountRepository.prototype.getUserAccount = function (phoneNumber) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4, prisma_1.default.userAccount.findUnique({
                             where: {
-                                username: username
+                                username: phoneNumber
                             }
                         })];
                     case 1: return [2, _a.sent()];

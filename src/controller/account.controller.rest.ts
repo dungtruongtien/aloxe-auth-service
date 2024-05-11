@@ -24,7 +24,7 @@ export default class UserAccountRestController implements IUserAccountRestContro
   }
 
   async login (req: Request, res: Response, next: NextFunction): Promise<any> {
-    const username = req.body.username
+    const username = req.body.phoneNumber
     const password = req.body.password
     try {
       const data = await this.userAccountService.login(username as string, password as string)

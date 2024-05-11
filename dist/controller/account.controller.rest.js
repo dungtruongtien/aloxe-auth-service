@@ -69,7 +69,7 @@ var UserAccountRestController = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        username = req.body.username;
+                        username = req.body.phoneNumber;
                         password = req.body.password;
                         _a.label = 1;
                     case 1:
