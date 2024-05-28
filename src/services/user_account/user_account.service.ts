@@ -6,7 +6,7 @@ import { type Prisma, type UserAccount } from '@prisma/client'
 import { type ICreateUserAccountInput } from './user_account.dto'
 import { type IUserRepo } from '../../repository/user/user.interface'
 import { type IUserAccountRepo } from '../../repository/user_account/user_account.interface'
-import { NotfoundError } from '../../common/custom_error'
+import { BadRequestError, NotfoundError } from '../../common/custom_error'
 
 const ROLE_MAPPING_STR: Record<number, string> = {
   1: 'STAFF',
@@ -29,12 +29,12 @@ export class UserAccountService implements IUserAccountService {
 
     const isEqual = bcrypt.compareSync(password, existsUserAccount.password)
     if (!isEqual) {
-      throw new Error('Invalid login credential')
+      throw new BadRequestError('Invalid login credential')
     }
 
     const userData = await this.userRepo.getUser(existsUserAccount.userId)
     if (!userData) {
-      throw new Error('Invalid login credential')
+      throw new BadRequestError('Invalid login credential')
     }
 
     const accessTokenPayload = {

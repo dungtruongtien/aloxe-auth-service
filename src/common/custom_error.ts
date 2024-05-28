@@ -27,7 +27,7 @@ export class NotfoundError extends CustomError {
   constructor (message: string, name = 'NotfoundError') {
     super(message)
     this.name = name
-    this.status = 404
+    this.status = 400
   }
 }
 
@@ -36,5 +36,13 @@ export class AuthenticationError extends CustomError {
     super(message)
     this.name = name
     this.status = 401
+  }
+}
+
+export class BadRequestError extends CustomError {
+  constructor (message: string, name = 'BadRequestError') {
+    super(message)
+    this.name = name
+    this.status = 400
   }
 }

@@ -67,13 +67,13 @@ var UserAccountService = (function () {
                         }
                         isEqual = bcryptjs_1.default.compareSync(password, existsUserAccount.password);
                         if (!isEqual) {
-                            throw new Error('Invalid login credential');
+                            throw new custom_error_1.BadRequestError('Invalid login credential');
                         }
                         return [4, this.userRepo.getUser(existsUserAccount.userId)];
                     case 2:
                         userData = _a.sent();
                         if (!userData) {
-                            throw new Error('Invalid login credential');
+                            throw new custom_error_1.BadRequestError('Invalid login credential');
                         }
                         accessTokenPayload = {
                             accountId: existsUserAccount.id,

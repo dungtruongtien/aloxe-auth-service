@@ -15,7 +15,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthenticationError = exports.NotfoundError = exports.BusinessError = exports.ValidationError = exports.CustomError = void 0;
+exports.BadRequestError = exports.AuthenticationError = exports.NotfoundError = exports.BusinessError = exports.ValidationError = exports.CustomError = void 0;
 var graphql_1 = require("graphql");
 var CustomError = (function (_super) {
     __extends(CustomError, _super);
@@ -55,7 +55,7 @@ var NotfoundError = (function (_super) {
         if (name === void 0) { name = 'NotfoundError'; }
         var _this = _super.call(this, message) || this;
         _this.name = name;
-        _this.status = 404;
+        _this.status = 400;
         return _this;
     }
     return NotfoundError;
@@ -73,4 +73,16 @@ var AuthenticationError = (function (_super) {
     return AuthenticationError;
 }(CustomError));
 exports.AuthenticationError = AuthenticationError;
+var BadRequestError = (function (_super) {
+    __extends(BadRequestError, _super);
+    function BadRequestError(message, name) {
+        if (name === void 0) { name = 'BadRequestError'; }
+        var _this = _super.call(this, message) || this;
+        _this.name = name;
+        _this.status = 400;
+        return _this;
+    }
+    return BadRequestError;
+}(CustomError));
+exports.BadRequestError = BadRequestError;
 //# sourceMappingURL=custom_error.js.map
